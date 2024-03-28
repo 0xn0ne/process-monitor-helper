@@ -1,0 +1,18 @@
+{
+  "目录扫描": {
+    "expr": "Detail.str.contains(\"List Directory\")",
+    "engine": "python"
+  },
+  "文件写入": {
+    "expr": "Detail.str.contains(\"Generic Write\") | Detail.str.contains(\"Generic Read/Write\") | Operation == \"WriteFile\"",
+    "engine": "python"
+  },
+  "进程创建": { "expr": "Operation == \"Process Create\"" },
+  "进程启动": { "expr": "Operation == \"Process Start\"" },
+  "注册表写入": {
+    "expr": "Operation.str.startswith(\"RegSet\") and not Detail.str.contains(\"Length: 0\")"
+  },
+  "网络连接创建": { "expr": "Operation == \"TCP Connect\"" },
+  "网络数据发送": { "expr": "Operation in [\"UDP Send\", \"TCP Send\"]" },
+  "网络数据接收": { "expr": "Operation in [\"UDP Receive\", \"TCP Receive\"]" }
+}
